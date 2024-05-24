@@ -16,6 +16,7 @@ data <- read_csv("data/CaseStudy Data.csv", show_col_types = FALSE)
 
 # View the first few rows of the data to understand its structure
 head(data)
+View(data)
 
 # Function to calculate payment dates based on given frequency and number of payments
 calculate_payment_dates <- function(start_date, frequency, freq_type, freq_number, num_payments) {
