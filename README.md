@@ -1,6 +1,6 @@
 # Payment Arrangements System Replication
 
-This project replicates the functionality of  payment arrangements system. The primary goal is to calculate all planned payments, including the last payment date and amount, for each customer based on the provided data.
+This project replicates the functionality of a payment arrangements system. The primary goal is to calculate all planned payments, including the last payment date and amount, for each customer based on the provided data.
 
 ## Company Overview
 
@@ -9,17 +9,15 @@ This project replicates the functionality of  payment arrangements system. The p
 - **Industry:** Financial Services
 - **Values:** Empathy, Ethics, Dedication & Solutions
 
-These values reflect the companies ability to find solutions that best suit our customers and clients. One instance is when our agents create payment arrangements for customers. An arrangement is an agreement between the company and a customer to pay for their arrears, either in whole or in manageable frequencies that the customer can adhere to.
+These values reflect the company's ability to find solutions that best suit our customers and clients. One instance is when our agents create payment arrangements for customers. An arrangement is an agreement between the company and a customer to pay for their arrears, either in whole or in manageable frequencies that the customer can adhere to.
 
 ## Case Study: Payment Arrangements
 
-Company's values empathy, ethics, dedication, and solutions. These values point to our ability to find solutions that best suit our customers and clients. One such instance is when our agents create payment arrangements for our customers. An arrangement is an agreement between Intrum and a customer to pay for their arrears, either in whole or manageable frequencies to which the customer can adhere.
+The company's values—empathy, ethics, dedication, and solutions—point to our ability to find solutions that best suit our customers and clients. One such instance is when our agents create payment arrangements for our customers. An arrangement is an agreement between Intrum and a customer to pay for their arrears, either in whole or in manageable frequencies to which the customer can adhere.
 
 ### Problem Statement
 
-The dataset [dataset](data/CaseStudy%20Data.csv) provided contains core information for anonymized arrangements for some customers. the company's in-house system uses the same information in this file to calculate all dates and payments expected from each arrangement.
-
-
+The dataset [CaseStudy Data.csv](data/CaseStudy%20Data.csv) provided contains core information for anonymized arrangements for some customers. The company's in-house system uses the same information in this file to calculate all dates and payments expected from each arrangement.
 
 ### Deliverables
 
@@ -44,6 +42,43 @@ The system performs the following tasks:
 3. **Last Payment Details**: Determines the last payment date and amount for each arrangement.
 4. **Output Generation**: Exports the calculated payment schedules and processed data to Excel files for presentation.
 
+## Streamlit Application
+
+The project includes a Streamlit application that provides an interactive interface for users to explore and interact with the payment arrangements data.
+
+### Features
+
+- **Upload Data**: Users can upload their dataset in CSV format.
+- **View Calculations**: Users can view the calculated payment schedules and last payment details.
+- **Download Results**: Users can download the results in Excel format.
+
+### Running the Application Locally
+
+1. **Clone the repository**:
+    ```sh
+    git clone https://github.com/Baci-Ak/Payment-Arrangements-System-Replication.git
+    cd Payment-Arrangements-System-Replication
+    ```
+
+2. **Set up a virtual environment**:
+    ```sh
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3. **Install the required packages**:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+4. **Run the Streamlit app**:
+    ```sh
+    streamlit run app.py
+    ```
+
+5. **Access the application**:
+    Open your web browser and go to `http://localhost:8501`.
+
 ## Data Files
 
 ### `CaseStudy Data.csv`
@@ -58,8 +93,8 @@ This CSV file contains the core information for anonymized arrangements for some
 - `Frequency`: Frequency of the payments (e.g., single, monthly).
 - `FrequencyType`: Type of frequency (e.g., days, weeks, months).
 - `FrequencyNumber`: Number associated with the frequency type.
-<img width="1144" alt="Screenshot 2024-05-24 at 5 54 08 PM" src="https://github.com/Baci-Ak/Payment-Arrangements-System-Replication/assets/134199508/f661ffea-6829-4144-8174-767bfdd62121">
 
+![Screenshot 2024-05-24 at 5 54 08 PM](https://github.com/Baci-Ak/Payment-Arrangements-System-Replication/assets/134199508/f661ffea-6829-4144-8174-767bfdd62121)
 
 ### `Payment_Schedule.xlsx`
 
@@ -67,8 +102,6 @@ This Excel file is generated by the system and contains the detailed payment sch
 - `CustomerReference`: Unique identifier for the customer.
 - `PaymentDate`: Date of each planned payment.
 - `PaymentAmount`: Amount of each planned payment.
-
-
 
 ### `Processed_Data.xlsx`
 
@@ -86,7 +119,6 @@ This Excel file is generated by the system and contains the processed data with 
 - `LastPaymentDate`: Date of the last payment.
 - `LastPaymentAmount`: Amount of the last payment.
 
-
 ## Project Structure
 
 The project repository includes the following key files and directories:
@@ -96,6 +128,8 @@ The project repository includes the following key files and directories:
   - `Payment_Schedule.xlsx`: The generated payment schedule.
   - `Processed_Data.xlsx`: The processed data with additional details.
 - **`payment_arrangements.R`**: The R script that contains the code to process the data and generate the payment schedules.
+- **`app.py`**: The Streamlit application script.
+- **`requirements.txt`**: A list of required Python packages for running the Streamlit application.
 
 ## Code and Implementation
 
@@ -109,15 +143,13 @@ The code to process the data and generate the payment schedules is provided in t
 ### Running the Code
 
 1. **Ensure necessary packages are installed**:
-    ```r
-    install.packages("readr")
-    install.packages("dplyr")
-    install.packages("lubridate")
-    install.packages("tidyr")
-    install.packages("openxlsx")
-    install.packages("DBI")
-    install.packages("odbc")
-    ```
+    - `readr`
+    - `dplyr`
+    - `lubridate`
+    - `tidyr`
+    - `openxlsx`
+    - `DBI`
+    - `odbc`
 
 2. **Run the R script**:
     - Open the `payment_arrangements.R` file in your R environment (e.g., RStudio).
@@ -148,17 +180,14 @@ The processed data and payment schedule are saved as Excel files in the [Data](d
 
 ## Screenshots
 
+![Screenshot 2024-05-24 at 5 55 23 PM](https://github.com/Baci-Ak/Payment-Arrangements-System-Replication/assets/134199508/75d0846b-0886-4fd0-9e94-26bb2742133f)
 
-<img width="471" alt="Screenshot 2024-05-24 at 5 55 23 PM" src="https://github.com/Baci-Ak/Payment-Arrangements-System-Replication/assets/134199508/75d0846b-0886-4fd0-9e94-26bb2742133f">
-
-<img width="1396" alt="Screenshot 2024-05-24 at 5 59 28 PM" src="https://github.com/Baci-Ak/Payment-Arrangements-System-Replication/assets/134199508/9ea924f7-6a07-492e-8296-3b3985fde339">
-
+![Screenshot 2024-05-24 at 5 59 28 PM](https://github.com/Baci-Ak/Payment-Arrangements-System-Replication/assets/134199508/9ea924f7-6a07-492e-8296-3b3985fde339)
 
 ## Conclusion
 
-This project demonstrates the integration of data manipulation, date handling, and file exporting techniques to replicate payment arrangements system. It highlights the ability to handle complex datasets and perform detailed calculations to produce meaningful outputs.
+This project demonstrates the integration of data manipulation, date handling, and file exporting techniques to replicate the payment arrangements system. It highlights the ability to handle complex datasets and perform detailed calculations to produce meaningful outputs.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
