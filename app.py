@@ -5,6 +5,15 @@ import datetime
 
 # Title and logo
 st.title("Payment Arrangements System Replication")
+
+# Description of the system
+st.markdown("""
+This system replicates the functionality of a payment arrangements system used by financial services companies. 
+It calculates all planned payments, including the last payment date and amount, for each customer based on the provided data. 
+Users can upload a CSV file with payment arrangement details, and the system will process this data to generate a detailed payment schedule 
+and display it alongside the original and processed data.
+""")
+# Image
 image = Image.open('profile_photo.png')
 st.image(image, caption='Baci Akom', width=200, use_column_width=False)
 
