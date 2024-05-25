@@ -1,22 +1,11 @@
 
 
-# seting up the working directory to the folder of the GitHub repository.
-setwd("/Users/AKB_CIM/Programming/R/Company's_projects/Intrum/Payment-Arrangements-System-Replication")
-
 # Load necessary libraries
 library(readr)       # For reading CSV files
 library(dplyr)       # For data manipulation
 library(lubridate)   # For date manipulation
 library(tidyr)       # For unnesting data
 library(openxlsx)    # For writing Excel files
-
-
-# Read the CSV file
-data <- read_csv("data/CaseStudy Data.csv", show_col_types = FALSE)
-
-# View the first few rows of the data to understand its structure
-head(data)
-View(data)
 
 # Function to calculate payment dates based on given frequency and number of payments
 calculate_payment_dates <- function(start_date, frequency, freq_type, freq_number, num_payments) {
@@ -39,59 +28,47 @@ calculate_payment_dates <- function(start_date, frequency, freq_type, freq_numbe
   return(as.Date(dates, origin = "1970-01-01")) # Return dates as Date type
 }
 
+# Function to process data and calculate payment dates
+process_payment_data <- function(input_path, output_dir) {
+  # Read the CSV file
+  data <- read_csv(input_path, show_col_types = FALSE)
+  
+  # Process the data to calculate payment dates, last payment date, and last payment amount
+  processed_data <- data %>%
+    rowwise() %>% # Process each row individually
+    mutate(
+      PaymentDates = list(calculate_payment_dates(ymd(FirstPaymentDate), Frequency, FrequencyType, FrequencyNumber, NumberOfPayments)), # Calculate payment dates
+      LastPaymentDate = ifelse(length(PaymentDates) > 0, max(PaymentDates), NA), # Calculate last payment date
+      LastPaymentAmount = ifelse(length(PaymentDates) > 0, TotalToPay - InstalmentAmount * (NumberOfPayments - 1), NA) # Calculate last payment amount
+    ) %>%
+    ungroup() # Ungroup to revert back to the original data structure
+  
+  # Convert all PaymentDates elements to Date type for consistency
+  processed_data <- processed_data %>%
+    mutate(PaymentDates = lapply(PaymentDates, as.Date, origin = "1970-01-01"))
+  
+  # Unnest the payment dates to create a flat structure
+  payment_schedule <- processed_data %>%
+    unnest(PaymentDates) %>%
+    select(CustomerReference, PaymentDates, InstalmentAmount) %>%
+    rename(
+      PaymentDate = PaymentDates,
+      PaymentAmount = InstalmentAmount
+    )
+  
+  # Export the payment schedule to an Excel file in a directory
+  write.xlsx(payment_schedule, file.path(output_dir, "Payment_Schedule.xlsx"))
+  
+  # Also, export the main processed data with last payment info to another Excel file
+  write.xlsx(processed_data, file.path(output_dir, "Processed_Data.xlsx"))
+}
 
-
-
-
-# Process the data to calculate payment dates, last payment date, and last payment amount
-processed_data <- data %>%
-  rowwise() %>% # Process each row individually
-  mutate(
-    PaymentDates = list(calculate_payment_dates(ymd(FirstPaymentDate), Frequency, FrequencyType, FrequencyNumber, NumberOfPayments)), # Calculate payment dates
-    LastPaymentDate = ifelse(length(PaymentDates) > 0, max(PaymentDates), NA), # Calculate last payment date
-    LastPaymentAmount = ifelse(length(PaymentDates) > 0, TotalToPay - InstalmentAmount * (NumberOfPayments - 1), NA) # Calculate last payment amount
-  ) %>%
-  ungroup() # Ungroup to revert back to the original data structure
-
-
-# View the processed data structure to ensure PaymentDates column is created correctly
-str(processed_data)
-
-
-
-# Convert all PaymentDates elements to Date type for consistency
-processed_data <- processed_data %>%
-  mutate(PaymentDates = lapply(PaymentDates, as.Date, origin = "1970-01-01"))
-
-# Ensure PaymentDates column is properly created and all elements are of Date type
-str(processed_data)
-View(processed_data)
-
-
-
-
-# Unnest the payment dates to create a flat structure
-payment_schedule <- processed_data %>%
-  unnest(PaymentDates) %>%
-  select(CustomerReference, PaymentDates, InstalmentAmount)
-
-
-# Rename columns for clarity in the final output
-payment_schedule <- payment_schedule %>%
-  rename(
-    PaymentDate = PaymentDates,
-    PaymentAmount = InstalmentAmount
-  )
-
-# View the payment schedule to verify the final output
-head(payment_schedule)
-View(payment_schedule)
-
-
-# Export the payment schedule to an Excel file in a directory
-library(openxlsx)
-write.xlsx(payment_schedule, file.path("data/", "Payment_Schedule.xlsx"))
-
-
-# Also, export the main processed data with last payment info to another Excel file
-write.xlsx(processed_data, file.path("data/","Processed_Data.xlsx"))
+# Command-line arguments for input path and output directory
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) == 2) {
+  input_path <- args[1]
+  output_dir <- args[2]
+  process_payment_data(input_path, output_dir)
+} else {
+  stop("Please provide input CSV file path and output directory path as arguments.")
+}
