@@ -47,7 +47,9 @@ st.download_button(
 
 # Footer
 st.markdown("Developed by Baci Akom")
-
-
+st.markdown("Contact: [baciakom](https://www.linkedin.com/in/basseyakom/)")   
+st.markdown("Source code: [GitHub](https://github.com/Baci-Ak/Payment-Arrangements-System-Replication/tree/main)")
+st.markdown("Report issues: [GitHub](https://github.com/Baci-Ak/Payment-Arrangements-System-Replication/issues)")
+st.markdown("Acknowledgements: [RStudio](https://rstudio.com/)")
 
 
