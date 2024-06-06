@@ -1,6 +1,6 @@
-# Payment Arrangements System Replication
+# Payment Arrangements System
 
-This project replicates the functionality of a payment arrangements system. The primary goal is to calculate all planned payments, including the last payment date and amount, for each customer based on the provided data.
+The aim of this project is to develop a system that automates and manages the functionality of a payment arrangements system used by financial services companies. The primary goal is to calculate all planned payments, including the last payment date and amount, for each customer based on the provided data.
 
 ## Company Overview
 
