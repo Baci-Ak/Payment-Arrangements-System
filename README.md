@@ -21,7 +21,7 @@ The dataset [CaseStudy Data.csv](data/CaseStudy%20Data.csv) provided contains co
 
 ### Deliverables
 
-1. **Replicate the System's Functionality**: Produce all planned payments (from the date of the first payment) for every single arrangement in the file provided.
+1. **the System's Functionality**: Produce all planned payments (from the date of the first payment) for every single arrangement in the file provided.
 2. **Last Payment Details**: Provide the last payment date and amount, as they are crucial for the company's system.
 3. **Documentation**: Document the thought process and solution.
 
@@ -45,7 +45,7 @@ The system performs the following tasks:
 ## Streamlit Application
 
 The project includes a Streamlit application that provides an interactive interface for users to explore and interact with the payment arrangements data.
-[see Application >>](https://payment-arrangements-system-replication-5eqnd6gemqryvumntnh4eb.streamlit.app/)
+[see Application >>](https://payment-arrangements-system.streamlit.app/)
 
 ### Features
 
