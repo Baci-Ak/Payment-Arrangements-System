@@ -45,7 +45,7 @@ The system performs the following tasks:
 ## Streamlit Application
 
 The project includes a Streamlit application that provides an interactive interface for users to explore and interact with the payment arrangements data.
-[see Application >>](https://payment-arrangements-system.streamlit.app/)
+[see Application >>](https://payment-arrangements-system-replication-5eqnd6gemqryvumntnh4eb.streamlit.app/)
 
 ### Features
 
