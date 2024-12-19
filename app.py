@@ -14,7 +14,7 @@ if 'currency_symbol' not in st.session_state:
 st.set_page_config(page_title="Payment Arrangement System", layout="wide")
 
 # Title and logo
-st.title("Payment Arrangement System")
+st.title("Payment Arrangement System by Bassey Akom")
 #image = Image.open('profile_photo.png')
 #st.image(image, caption='Baci Akom', width=100, use_column_width=True)
 
